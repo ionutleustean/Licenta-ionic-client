@@ -1,0 +1,37 @@
+
+
+<ion-content padding class="register">
+
+    <button clear (click)="goToHomePage()">
+        X
+    </button>
+    <h1>Register</h1>
+    <ion-list>
+        {{errorUserMesage}}
+        <ion-input>
+            <input [(ngModel)]="username" (keyup)="userNameChange()"  type="text" placeholder="Username">
+        </ion-input>
+        {{errorPasswordMesage}}
+        <ion-input>
+            <input [(ngModel)]="firstPassword" (keyup)="passwordChange(firstPassword)" type="password" placeholder="Password">
+        </ion-input>
+        <ion-input>
+            <input [(ngModel)]="secondPassword" (keyup)="passwordChange(secondPassword)" type="password" placeholder="Password">
+        </ion-input>
+        {{errorEmailMesage}}
+        <ion-input>
+            <input [(ngModel)]="email" (keyup)="emailChange(email)" type="email" placeholder="Email">
+        </ion-input>
+
+    </ion-list>
+
+    <button  block outline (click)="register()">
+        Register
+    </button>
+
+    <button  block clear (click)="goToLogIn()">
+        Log In
+    </button>
+
+
+</ion-content>
