@@ -17,7 +17,7 @@ export class LogIn {
   }
 
   goToRegister() {
-   c
+    this.nav.push(Register);
   }
 
   logIn() {

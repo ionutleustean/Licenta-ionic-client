@@ -8266,3 +8266,7 @@ body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-size: 1.4rem;
   background-color: #fff; }
+
+.homePage {
+  background: url("../../img/homepage_background.jpg") no-repeat center center fixed;
+  background-size: cover; }

@@ -6,6 +6,10 @@ module.exports = {
       src: ['app/**/*.html'],
       dest: "www/build"
     },
+    img: {
+      src: ['app/img/**/*.jpg'],
+      dest: "www/build"
+    },
     sass: {
       src: ['app/app.+(ios|md).scss'],
       dest: 'www/build/css',

@@ -27,6 +27,7 @@ export class Restaurants {
         var restaurants = [];
         for (var i = 0; i < results.length; i++) {
           var object = {
+            'Id': results[i].id,
             'Name': results[i].get('Name'),
             'Shortdescription': results[i].get('Shortdescription'),
             'Address': results[i].get('Address')
@@ -41,8 +42,10 @@ export class Restaurants {
     });
   }
 
-  goToTables(){
-    this.nav.push(Tables);
+  goToTables(restaurantId){
+    this.nav.push(Tables, {
+      restaurantId: restaurantId,
+    });
   }
 
 

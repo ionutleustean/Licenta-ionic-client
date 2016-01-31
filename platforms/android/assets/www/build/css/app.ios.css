@@ -6946,3 +6946,7 @@ body {
   font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
   font-size: 1.4rem;
   background-color: #fff; }
+
+.homePage {
+  background: url("../../img/homepage_background.jpg") no-repeat center center fixed;
+  background-size: cover; }

@@ -3217,6 +3217,8 @@
 	//import {TabsPage} from './pages/tabs/tabs';
 	var homePage_1 = __webpack_require__(350);
 	var parse_1 = __webpack_require__(354);
+	var core_1 = __webpack_require__(8);
+	core_1.enableProdMode();
 	var MyApp = (function () {
 	    function MyApp(platform) {
 	        this.root = homePage_1.HomePage;
@@ -60786,12 +60788,16 @@
 	var ionic_1 = __webpack_require__(6);
 	var page1_1 = __webpack_require__(351);
 	var logIn_1 = __webpack_require__(352);
+	var restaurants_1 = __webpack_require__(430);
 	var HomePage = (function () {
 	    function HomePage(nav) {
 	        this.nav = nav;
 	    }
 	    HomePage.prototype.goToOtherPage = function () {
 	        this.nav.push(page1_1.Page1);
+	    };
+	    HomePage.prototype.goToRestaurants = function () {
+	        this.nav.push(restaurants_1.Restaurants);
 	    };
 	    HomePage.prototype.goToLogIn = function () {
 	        this.nav.push(logIn_1.LogIn);
@@ -71295,6 +71301,135 @@
 	    return request._thenRunCallbacks(options);
 	  }
 	});
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var ionic_1 = __webpack_require__(6);
+	var parse_1 = __webpack_require__(354);
+	var tables_1 = __webpack_require__(431);
+	var Restaurants = (function () {
+	    function Restaurants(nav) {
+	        this.restaurants = this.getRestaurants();
+	        this.nav = nav;
+	    }
+	    Restaurants.prototype.getRestaurants = function () {
+	        var Restaurant = parse_1.Parse.Object.extend("Restaurant");
+	        var query = new parse_1.Parse.Query(Restaurant);
+	        var res = this;
+	        //query.equalTo("Name", "Shortdescription", "Address");
+	        query.find({
+	            success: function (results) {
+	                //alert("Successfully retrieved " + results.length + " scores.");
+	                //// Do something with the returned Parse.Object values
+	                var restaurants = [];
+	                for (var i = 0; i < results.length; i++) {
+	                    var object = {
+	                        'Id': results[i].id,
+	                        'Name': results[i].get('Name'),
+	                        'Shortdescription': results[i].get('Shortdescription'),
+	                        'Address': results[i].get('Address')
+	                    };
+	                    restaurants.push(object);
+	                }
+	                res.restaurants = restaurants;
+	            },
+	            error: function (error) {
+	                alert("Error: " + error.code + " " + error.message);
+	            }
+	        });
+	    };
+	    Restaurants.prototype.goToTables = function (restaurantId) {
+	        this.nav.push(tables_1.Tables, {
+	            restaurantId: restaurantId,
+	        });
+	    };
+	    Restaurants = __decorate([
+	        ionic_1.Page({
+	            templateUrl: 'build/pages/order/restaurants/restaurants.html',
+	        }), 
+	        __metadata('design:paramtypes', [(typeof (_a = typeof ionic_1.NavController !== 'undefined' && ionic_1.NavController) === 'function' && _a) || Object])
+	    ], Restaurants);
+	    return Restaurants;
+	    var _a;
+	})();
+	exports.Restaurants = Restaurants;
+
+
+/***/ },
+/* 431 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var ionic_1 = __webpack_require__(6);
+	var parse_1 = __webpack_require__(354);
+	var Tables = (function () {
+	    function Tables(nav, navParams) {
+	        this.nav = nav;
+	        this.restaurantId = navParams.get("restaurantId");
+	        console.log("a ", this.restaurantId);
+	        tables = this.getTables();
+	    }
+	    Tables.prototype.getTables = function () {
+	        var Tables = parse_1.Parse.Object.extend("Tables");
+	        var query = new parse_1.Parse.Query(Tables);
+	        console.log(this.restaurantId);
+	        query.equalTo("RestaurantId", this.restaurantId);
+	        var res = this;
+	        query.find({
+	            success: function (results) {
+	                //alert("Successfully retrieved " + results.length + " scores.");
+	                //// Do something with the returned Parse.Object values
+	                var tables = [];
+	                for (var i = 0; i < results.length; i += 2) {
+	                    var object = [{
+	                            'Id': results[i].id,
+	                            'seats': results[i].get('Seats'),
+	                            'tableNumber': results[i].get('TableNumber'),
+	                        }, {
+	                            'Id': results[i + 1] ? results[i + 1].id : null,
+	                            'seats': results[i + 1] ? results[i + 1].get('Seats') : null,
+	                            'tableNumber': results[i + 1] ? results[i + 1].get('TableNumber') : null,
+	                        }];
+	                    tables.push(object);
+	                }
+	                res.tables = tables;
+	                console.log(tables);
+	            },
+	            error: function (error) {
+	                alert("Error: " + error.code + " " + error.message);
+	            }
+	        });
+	    };
+	    Tables = __decorate([
+	        ionic_1.Page({
+	            templateUrl: 'build/pages/order/tables/tables.html',
+	        }), 
+	        __metadata('design:paramtypes', [(typeof (_a = typeof ionic_1.NavController !== 'undefined' && ionic_1.NavController) === 'function' && _a) || Object, (typeof (_b = typeof ionic_1.NavParams !== 'undefined' && ionic_1.NavParams) === 'function' && _b) || Object])
+	    ], Tables);
+	    return Tables;
+	    var _a, _b;
+	})();
+	exports.Tables = Tables;
+
 
 /***/ }
 /******/ ]);

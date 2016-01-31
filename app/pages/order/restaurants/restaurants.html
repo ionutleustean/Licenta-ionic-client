@@ -18,7 +18,7 @@
                  <ion-icon [hidden]="!item.Address"  name="pin"></ion-icon> {{item.Address}}
             </p>
 
-            <button (click)="goToTables()" outline>Alege</button>
+            <button (click)="goToTables(item.Id)" outline>Alege</button>
 
         </ion-card-content>
     </ion-card>
