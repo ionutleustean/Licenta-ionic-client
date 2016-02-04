@@ -1,5 +1,4 @@
 import {Page, NavController} from 'ionic/ionic';
-import {Page1} from '../page1/page1';
 import {LogIn} from '../user/logIn/logIn';
 import {Restaurants} from '../order/restaurants/restaurants';
 

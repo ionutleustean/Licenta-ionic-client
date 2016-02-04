@@ -1,0 +1,34 @@
+<ion-navbar *navbar primary>
+    <ion-title>Alege masa</ion-title>
+</ion-navbar>
+
+<ion-content padding class="menu">
+
+
+    <ion-card *ngFor="#item of menu #i = index">
+
+        <img [src]="item.image">
+        <div class="menu-content">
+            <button fab fab-right class="add-product">
+                +
+            </button>
+
+            <ion-item>
+                <h2 primary>{{item.name}}</h2>
+                <p>{{item.shortDescription}}</p>
+            </ion-item>
+
+
+            <!--<ion-item>-->
+                <!--<span item-left>18 min</span>-->
+                <!--<span item-left>(2.6 mi)</span>-->
+                <!--<button primary clear item-right>-->
+                    <!--<ion-icon name="navigate"></ion-icon>-->
+                    <!--Start-->
+                <!--</button>-->
+            <!--</ion-item>-->
+        </div>
+
+    </ion-card>
+
+</ion-content>

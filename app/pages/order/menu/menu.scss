@@ -1,0 +1,11 @@
+@import "../../../app.variables";
+
+.menu-content {
+  position: relative;
+  padding-top: map-get($dimension, medium);;
+
+  .add-product {
+    top: -32px;
+
+  }
+}

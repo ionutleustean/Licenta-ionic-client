@@ -7,10 +7,18 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "pages/page1/page1";
-
-@import "pages/page2/page2";
-
-@import "pages/page3/page3";
-
 @import "pages/homePage/homePage";
+@import "pages/order/restaurants/restaurants";
+@import "pages/order/tables/tables";
+@import "pages/order/menu/menu";
+
+
+.centered-container{
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.img-circle {
+  border-radius: 50%;
+}

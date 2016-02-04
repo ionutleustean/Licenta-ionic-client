@@ -1,44 +1,23 @@
-<ion-navbar *navbar>
+<ion-navbar *navbar primary>
     <ion-title>Alege masa</ion-title>
 </ion-navbar>
 
 <ion-content padding class="tables">
 
 
-    <!--<ion-card *ngFor="#item of restaurants #i = index">-->
-    <!--&lt;!&ndash;<img src="img/nin-live.png"/>&ndash;&gt;-->
-    <!--<ion-card-content>-->
-    <!--<h2 class="card-title">-->
-    <!--{{item.Name}}-->
-    <!--</h2>-->
-    <!--<p>-->
-    <!--{{item.Shortdescription}}-->
-    <!--</p>-->
-    <!--<p>-->
-    <!--<ion-icon [hidden]="!item.Address"  name="pin"></ion-icon> {{item.Address}}-->
-    <!--</p>-->
+        <ion-col width-50 *ngFor="#item of tables #i = index" class="tables_col"  [style.background]="item.color" (click)="goToMenu(item.tableNumber)">
+            <div class="table_header">
+                {{item.tableNumber}}
+            </div>
 
-    <!--<button (click)="goToTables()" clear>Alege</button>-->
+            <div class="table_content">
+                Locuri disponibile: {{item.seats}}
 
-    <!--</ion-card-content>-->
-    <!--</ion-card>-->
+            </div>
 
-    <ion-row *ngFor="#row of tables">
-        <ion-col *ngFor="#item of row #i = index">
-            <ion-card>
-
-                <ion-card-header>
-                    {{item.tableNumber}}
-                </ion-card-header>
-                <ion-card-content>
-                    Locuri : {{item.seats}}
-                </ion-card-content>
-
-            </ion-card>
 
         </ion-col>
 
-    </ion-row>
 
 
 </ion-content>

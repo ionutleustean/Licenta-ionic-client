@@ -1,4 +1,4 @@
-import {Page, NavController, NgFor} from 'ionic/ionic';
+import {Page, NavController, NgFor, NgSrc} from 'ionic/ionic';
 import {Parse} from 'parse';
 import {Tables} from '../tables/tables'
 
@@ -11,9 +11,11 @@ export class Restaurants {
   constructor(nav:NavController) {
     this.nav = nav;
 
+
+    restaurants = this.getRestaurants();
+
   }
 
-  restaurants = this.getRestaurants();
 
   getRestaurants(){
     var Restaurant = Parse.Object.extend("Restaurant");
@@ -30,7 +32,8 @@ export class Restaurants {
             'Id': results[i].id,
             'Name': results[i].get('Name'),
             'Shortdescription': results[i].get('Shortdescription'),
-            'Address': results[i].get('Address')
+            'Address': results[i].get('Address'),
+            'Logo': "img/restaurants/"+results[i].get('Image')
           };
           restaurants.push(object);
         }
